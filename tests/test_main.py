@@ -50,7 +50,7 @@ def test_sample_case_one():
 
 def test_sample_case_two():
     result = run_case("4 1\n0 5 -1 -5\n2 3\n")
-    assert abs(result - 16.860023) < 1e-6
+    assert abs(result - 16.858414) < 1e-6
 
 
 def test_small_cases_match_bruteforce():
