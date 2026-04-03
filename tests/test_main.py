@@ -53,7 +53,7 @@ def test_sample_case_two():
     assert abs(result - 16.858414) < 1e-6
 
 
-def test_small_cases_match_bruteforce():
+def test_small_cases_match_brute_force():
     axis_cases = [
         [0, 2],
         [0, 2, 5],
