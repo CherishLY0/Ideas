@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = Path(tempfile.gettempdir()) / "ideas-java-classes"
+OUT = Path(tempfile.gettempdir()) / "compiled-java-classes"
 
 
 def compile_java():
