@@ -4,8 +4,9 @@ import shutil
 import subprocess
 from pathlib import Path
 
+import pytest
 
-ROOT = Path("/home/runner/work/Ideas/Ideas")
+ROOT = Path(__file__).resolve().parents[1]
 OUT = Path("/tmp/ideas-java-classes")
 
 
@@ -20,8 +21,12 @@ def compile_java():
     )
 
 
-def run_case(data):
+@pytest.fixture(scope="module", autouse=True)
+def build_java():
     compile_java()
+
+
+def run_case(data):
     result = subprocess.run(
         ["java", "-cp", str(OUT), "Solution"],
         input=data,
@@ -73,9 +78,9 @@ def test_sample_case_two():
 
 def test_small_cases_match_brute_force():
     axis_cases = [[0, 2], [0, 2, 5], [-3, 0, 4], [-2, 1, 3, 6]]
-    head_cases = [(1.0, 1.0), (2.0, 3.0), (-1.0, 2.0)]
+    head_cases = [(1, 1), (2, 3), (-1, 2)]
     for axis_points, head in itertools.product(axis_cases, head_cases):
         n = len(axis_points)
         for start in range(n + 1):
-            data = f"{n} {start + 1}\n{' '.join(map(str, axis_points))}\n{int(head[0])} {int(head[1])}\n"
+            data = f"{n} {start + 1}\n{' '.join(map(str, axis_points))}\n{head[0]} {head[1]}\n"
             assert abs(run_case(data) - brute_force(axis_points, head, start)) < 1e-6
