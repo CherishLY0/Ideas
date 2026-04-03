@@ -40,7 +40,7 @@ public class Solution {
     }
 
     // Write your code here
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args) throws Exception {
         Locale.setDefault(Locale.US);
         System.setIn(new BufferedInputStream(System.in));
         FastScanner fs = new FastScanner();
